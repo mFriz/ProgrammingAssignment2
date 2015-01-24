@@ -10,6 +10,12 @@ makeCacheMatrix <- function(x = matrix()) {
     set <- function(y) {
         x <<- y
         inv <<- NULL
+        # The above means that each call of set() will remove the cache! That is 
+        # why it is not necessary to check, wheather the matrix has changed...
+        # If the matrix was changed using set(y), then the inverse will be
+        # calculated again. 
+        # One could add a check wheather y == x to avoid unnecessarily removing 
+        # the cache. 
     }
     get <- function() x
     setInverse <- function(inverse) inv <<- inverse
